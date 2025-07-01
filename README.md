@@ -82,3 +82,26 @@ AWS-Cognito-Implementation/
 ## License
 
 MIT
+
+## AWS Cognito Authentication Flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant ExpressAPI as "Express API"
+    participant Cognito as "AWS Cognito"
+    User->>ExpressAPI: SignUp/SignIn/Verify Request
+    ExpressAPI->>Cognito: Forward credentials
+    Cognito-->>ExpressAPI: Response (tokens, status)
+    ExpressAPI-->>User: Response (tokens, status)
+    User->>ExpressAPI: Access Protected Route (with JWT)
+    ExpressAPI->>Cognito: Validate/Refresh Token
+    Cognito-->>ExpressAPI: Token Valid/Refreshed
+    ExpressAPI-->>User: Protected Data or Error
+```
+
+![AWS Cognito Animation](assets/aws-cognito-animation.gif)
+
+[![Watch the AWS Cognito Overview](https://img.youtube.com/vi/6oTPA4TTito/hqdefault.jpg)](https://www.youtube.com/watch?v=6oTPA4TTito)
+
+▶️ [Watch AWS Cognito Overview on YouTube](https://www.youtube.com/watch?v=6oTPA4TTito)
